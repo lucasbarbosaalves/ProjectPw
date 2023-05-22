@@ -2,7 +2,7 @@ import express from 'express'
 const app = express();
 app.use(express.json());
 
-// Exemplo de dados para o modelo de negócio
+
 let dados = [
   { id: 1, nome: 'Airmax 97', cor: 'preto', tamanho: '42', preco: 'R$829,99' },
   { id: 2, nome: 'Adidas', cor: 'preto', tamanho: '42', preco: 'R$829,99' },
@@ -16,12 +16,10 @@ let dados = [
   { id: 10, nome: 'Airmax 97', cor: 'preto', tamanho: '42', preco: 'R$829,99' }
 ];
 
-// Rota para obter todos os dados
 app.get('/api/produto', (req, res) => {
   res.json(dados);
 });
 
-// Rota para obter um dado específico
 app.get('/api/produto/:id', (req, res) => {
   const dado = dados.find(d => d.id === parseInt(req.params.id));
   if (dado) {
@@ -31,14 +29,12 @@ app.get('/api/produto/:id', (req, res) => {
   }
 });
 
-// Rota para adicionar um novo dado
 app.post('/api/produto', (req, res) => {
   const novoDado = req.body;
   dados.push(novoDado);
   res.status(201).json(novoDado);
 });
 
-// Rota para atualizar um dado existente
 app.put('/api/produto/:id', (req, res) => {
   const dado = dados.find(d => d.id === parseInt(req.params.id));
   if (dado) {
@@ -49,7 +45,6 @@ app.put('/api/produto/:id', (req, res) => {
   }
 });
 
-// Rota para excluir um dado existente
 app.delete('/api/produto/:id', (req, res) => {
   const index = dados.findIndex(d => d.id === parseInt(req.params.id));
   if (index !== -1) {
